@@ -10,7 +10,7 @@ export default {
     },
     search_bar: {
         order_no: '订单号',
-        task_no: '任务号',
+        task_no: '商户订单号',
         status: '状态',
         type: '类型',
         agent: '操作人',
