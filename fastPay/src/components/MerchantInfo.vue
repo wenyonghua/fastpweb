@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import { ElMessage } from 'element-plus'
-import { getMerchantInfo } from '~/api/api';
+import { getMerchantInfo, modifyLoginPwd, modifyMoneyPwd } from '~/api/api';
 import { useStore } from '~/store/store';
-
-// defineProps<{ msg: string }>();
 
 const store = useStore();
 
@@ -25,6 +23,7 @@ interface PassWord {
 
 const loading = ref(false);
 const dialogVisible = ref(false);
+const dialogVisiblePayment = ref(false);
 const submitForm = reactive(<PassWord>{});
 
 let info = reactive({
@@ -40,12 +39,46 @@ const init = () => {
   })
 }
 
-const handleClose = () => {
-  
+const onSubmitLoginPwd = () => {
+  if (submitForm.newPassword === submitForm.confirmed) {
+    modifyLoginPwd({
+      oldLoginPwd: submitForm.oldPassword,
+      newLoginPwd: submitForm.newPassword
+    }).then(res => {
+      if (res.data.success) {
+        submitForm.newPassword = '';
+        submitForm.oldPassword = '';
+        submitForm.confirmed = '';
+        ElMessage.success(res.data.msg);
+        dialogVisible.value = false;
+      } else {
+        ElMessage.error(res.data.msg);
+      }
+    })
+  } else {
+    ElMessage.error('Not same password confirm!')
+  }
 }
 
-const toast = () => {
-  ElMessage.success('Hello')
+const onSubmitPaymentPwd = () => {
+  if (submitForm.newPassword === submitForm.confirmed) {
+    modifyMoneyPwd({
+      oldMoneyPwd: submitForm.oldPassword,
+      newMoneyPwd: submitForm.newPassword
+    }).then(res => {
+      if (res.data.success) {
+        submitForm.newPassword = '';
+        submitForm.oldPassword = '';
+        submitForm.confirmed = '';
+        ElMessage.success(res.data.msg);
+        dialogVisiblePayment.value = false;
+      } else {
+        ElMessage.error(res.data.msg);
+      }
+    })
+  } else {
+    ElMessage.error('Not same password confirm!')
+  }
 }
 
 init();
@@ -59,7 +92,7 @@ init();
             <span>Merchant Information</span>
             <div>
               <el-button class="button" type="text" @click="dialogVisible = true">Change Password</el-button>
-              <el-button class="button" type="text">Change Payment Password</el-button>
+              <el-button class="button" type="text" @click="dialogVisiblePayment = true">Change Payment Password</el-button>
             </div>
           </div>
         </template>
@@ -76,23 +109,47 @@ init();
     v-model="dialogVisible"
     title="Change Login Password"
     width="40%"
-    :before-close="handleClose"
   >
       <el-form :inline="false" :model="submitForm" class="demo-form-inline">
         <el-form-item :label="$t('account.old_password')">
-          <el-input v-model="submitForm.oldPassword" :placeholder="$t('search_bar.placeholder')" />
+          <el-input type="password" v-model="submitForm.oldPassword" :placeholder="$t('search_bar.placeholder')" />
         </el-form-item>
         <el-form-item :label="$t('account.new_password')">
-          <el-input v-model="submitForm.newPassword" :placeholder="$t('search_bar.placeholder')" />
+          <el-input type="password" v-model="submitForm.newPassword" :placeholder="$t('search_bar.placeholder')" />
         </el-form-item>
         <el-form-item :label="$t('account.confirmed')">
-          <el-input v-model="submitForm.confirmed" :placeholder="$t('search_bar.placeholder')" />
+          <el-input type="password" v-model="submitForm.confirmed" :placeholder="$t('search_bar.placeholder')" />
         </el-form-item>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="dialogVisible = false"
+          <el-button type="primary" @click="onSubmitLoginPwd"
+            >Confirm</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
+     <el-dialog
+    v-model="dialogVisiblePayment"
+    title="Change Payment Password"
+    width="40%"
+  >
+      <el-form :inline="false" :model="submitForm" class="demo-form-inline">
+        <el-form-item :label="$t('account.old_password')">
+          <el-input type="password" v-model="submitForm.oldPassword" :placeholder="$t('search_bar.placeholder')" />
+        </el-form-item>
+        <el-form-item :label="$t('account.new_password')">
+          <el-input type="password" v-model="submitForm.newPassword" :placeholder="$t('search_bar.placeholder')" />
+        </el-form-item>
+        <el-form-item :label="$t('account.confirmed')">
+          <el-input type="password" v-model="submitForm.confirmed" :placeholder="$t('search_bar.placeholder')" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="onSubmitPaymentPwd"
             >Confirm</el-button
           >
         </span>
