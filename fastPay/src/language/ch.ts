@@ -33,7 +33,7 @@ export default {
     account: {
         user: '账户',
         old_password: '旧密码',
-        new_password: '登录密码',
+        new_password: '新密码',
         confirmed: '确认密码'
     },
     message: {
