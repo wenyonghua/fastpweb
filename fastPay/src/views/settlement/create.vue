@@ -65,9 +65,10 @@ init();
         </div>
     </template>
       <el-form :inline="false" :model="submitForm" class="demo-form-inline" label-width="150px">
-        <el-form-item label="Available Balance">
-          <span>{{store.state.info?.withdrawableAmount}}</span>
-        </el-form-item>
+        <div class="el-form-item"  style="color: red;">
+          <label for="" class="el-form-item__label" style="width: 150px;color: red;">Available Balance</label>
+          <div class="el-form-item__content"><span>{{store.state.info?.withdrawableAmount}}</span>
+        </div></div>
         <el-form-item label="Amount">
           <el-input-number controls-position="right" v-model="submitForm.withdrawAmount" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
         </el-form-item>
@@ -111,7 +112,7 @@ init();
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper-box {
   padding: 10px;
 }

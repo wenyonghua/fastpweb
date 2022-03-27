@@ -21,9 +21,10 @@ const loginInfo = reactive({
   password: '19880806'
 })
 
-const getList = () => {
-
-}
+const checkCapslock = (e: any) => {
+    const { key } = e
+    capsTooltip.value = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+  }
 
 const showPwd = () => {
     // todo
@@ -31,12 +32,16 @@ const showPwd = () => {
 
 const handleLogin = () => {
   login(loginInfo).then(res => {
-    store.action.updateUser(JSON.parse(res.data.msg));
-    let hostName = route.query.redirect;  // 获取域名
-    if (hostName === location.hostname) {   // 判断如果域名是你项目域名，说明是从本网站内部跳转过来的，
-          router.go(-1);   // 登录成功后，返回上次进入的页面；
+    if (res.data.success) {
+      store.action.updateUser(JSON.parse(res.data.msg));
+      let hostName = route.query.redirect;  // 获取域名
+      if (hostName === location.hostname) {   // 判断如果域名是你项目域名，说明是从本网站内部跳转过来的，
+            router.go(-1);   // 登录成功后，返回上次进入的页面；
+      } else {
+        router.replace({path: '/'});
+      }
     } else {
-       router.replace({path: '/'});
+        ElMessage.error(res.data.msg);
     }
   })
 }
@@ -65,7 +70,7 @@ const handleLogin = () => {
         />
       </el-form-item>
 
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+      <el-tooltip :visible="capsTooltip" content="Caps lock is On" placement="right" manual>
         <el-form-item prop="password">
           <span class="svg-container">
             <el-icon><lock /></el-icon>
@@ -78,6 +83,7 @@ const handleLogin = () => {
             name="password"
             tabindex="2"
             autocomplete="on"
+            @keyup="checkCapslock"
             @keyup.enter="handleLogin"
           />
           <!-- <span class="show-pwd" @click="showPwd">
