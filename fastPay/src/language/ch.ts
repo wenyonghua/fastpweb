@@ -11,9 +11,9 @@ export default {
     search_bar: {
         order_no: '订单号',
         task_no: '商户订单号',
-        status: '状态',
-        type: '类型',
-        agent: '操作人',
+        status: '订单状态',
+        type: '收款通道',
+        agent: '接单人',
         subtime: '提交时间',
         to: '至',
         search: '搜索',
@@ -28,7 +28,7 @@ export default {
         edit_bank_card: '编辑银行卡',
         bank_name: '银行名字',
         account_name: '账户名称',
-        account_num: '账号'
+        account_num: '银行卡号'
     },
     account: {
         user: '账户',

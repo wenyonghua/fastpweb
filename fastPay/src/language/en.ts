@@ -28,7 +28,7 @@ export default {
         edit_bank_card: 'Edit BankCard',
         bank_name: 'Bank Name',
         account_name: 'Account Name',
-        account_num: 'Account Num'
+        account_num: 'Account No'
     },
     account: {
         user: 'User',
