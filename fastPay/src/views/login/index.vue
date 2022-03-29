@@ -17,8 +17,8 @@ const loading = ref(false);
 const showDialog = ref(false)
 
 const loginInfo = reactive({
-  username: 'AG005',
-  password: '19880806'
+  username: '',
+  password: ''
 })
 
 const checkCapslock = (e: any) => {

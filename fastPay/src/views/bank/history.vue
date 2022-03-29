@@ -67,9 +67,9 @@ getList();
       <el-input v-model="query.merchantOrderNo" :placeholder="$t('search_bar.placeholder')" />
     </el-form-item>
     <el-form-item :label="$t('search_bar.subtime')">
-        <el-date-picker v-model="query.submitStartTime" value-format="YYYY-MM-DD" type="date" placeholder="Pick a day" />
+        <el-date-picker v-model="query.submitStartTime" value-format="YYYY-MM-DD" type="date" :placeholder="$t('search_bar.placeholder_date')" />
         <span style="padding: 0 10px">{{$t('search_bar.to')}}</span>
-        <el-date-picker v-model="query.submitEndTime" value-format="YYYY-MM-DD" type="date" placeholder="Pick a day" />
+        <el-date-picker v-model="query.submitEndTime" value-format="YYYY-MM-DD" type="date" :placeholder="$t('search_bar.placeholder_date')" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">{{$t('search_bar.search') }}</el-button>
@@ -81,20 +81,20 @@ getList();
     <el-table-column type="expand">
       <template #default="props">
         <div class="expand_table">
-          <p><span class="label">dealTime:</span> {{ props.row.dealTime }}</p>
-          <p><span class="label">Remark:</span> {{ props.row.note }}</p>
+          <p><span class="label">{{$t('table.proccess_time')}}:</span> {{ props.row.dealTime }}</p>
+          <p><span class="label">{{$t('table.remark')}}:</span> {{ props.row.note }}</p>
         </div>
       </template>
     </el-table-column>
-    <el-table-column prop="orderNo" label="order No" width="180"/>
-    <el-table-column prop="merchantOrderNo" label="Task No" width="180" />
-    <el-table-column prop="rechargeAmount" label="rechargeAmount" width="80" />
-    <el-table-column prop="actualPayAmount" label="actualPayAmount" width="80" />
-    <el-table-column prop="serviceChange" label="serviceChange" width="80"/>
-    <el-table-column prop="merchantTotalView" label="merchantTotalView" width="180" />
-    <el-table-column prop="orderStateName" label="orderState" />
-    <el-table-column prop="createTime" label="createTime" width="160" />
-    <el-table-column prop="settlementTime" label="endTime" width="160" />
+    <el-table-column prop="orderNo" :label="$t('table.order_no')" width="180"/>
+    <el-table-column prop="merchantOrderNo" :label="$t('table.merchant_order_no')" width="180" />
+    <el-table-column prop="rechargeAmount" :label="$t('table.re_change_amount')" width="100" />
+    <el-table-column prop="actualPayAmount" :label="$t('table.actual_pay_amount')" width="120" />
+    <el-table-column prop="serviceChange" :label="$t('table.service_change')" width="80"/>
+    <el-table-column prop="merchantTotalView" :label="$t('table.merchant_total_view')" width="180" />
+    <el-table-column prop="orderStateName" :label="$t('table.order_state')" />
+    <el-table-column prop="createTime" :label="$t('table.submit_time')" width="160" />
+    <el-table-column prop="settlementTime" :label="$t('table.settlement_time')" width="160" />
   </el-table>
   <div class="pager-box-cus" >
       <el-pagination 

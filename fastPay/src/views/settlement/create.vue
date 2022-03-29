@@ -61,19 +61,19 @@ init();
       <el-card class="box-card" v-loading="loading">
     <template #header>
         <div class="card-header">
-        <span>Create Settlement</span>
+        <span>{{$t('settlement.create_settlement')}}</span>
         </div>
     </template>
       <el-form :inline="false" :model="submitForm" class="demo-form-inline" label-width="150px">
         <div class="el-form-item"  style="color: red;">
-          <label for="" class="el-form-item__label" style="width: 150px;color: red;">Available Balance</label>
+          <label for="" class="el-form-item__label" style="width: 150px;color: red;">{{$t('settlement.available_balance')}}</label>
           <div class="el-form-item__content"><span>{{store.state.info?.withdrawableAmount}}</span>
         </div></div>
-        <el-form-item label="Amount">
+        <el-form-item :label="$t('settlement.amount')">
           <el-input-number controls-position="right" v-model="submitForm.withdrawAmount" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
         </el-form-item>
-        <el-form-item label="To Bank Account">
-            <el-select v-model="submitForm.merchantBankCardId" placeholder="Select" style="width: 400px">
+        <el-form-item :label="$t('settlement.to_bank_account')">
+            <el-select v-model="submitForm.merchantBankCardId" :placeholder="$t('search_bar.placeholder_select')" style="width: 400px">
                 <el-option
                 v-for="item in BankAccount.data"
                 :key="item.id"
@@ -101,11 +101,11 @@ init();
                 </el-option>
             </el-select>
         </el-form-item>
-        <el-form-item label="Payment Password">
+        <el-form-item :label="$t('settlement.payment_pwd')">
           <el-input type="password" v-model="submitForm.moneyPwd" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
         </el-form-item>
         <el-form-item>
-           <el-button type="primary" @click="onSubmit">{{$t('search_bar.submint') }}</el-button>
+           <el-button type="primary" @click="onSubmit">{{$t('search_bar.submint')}}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
