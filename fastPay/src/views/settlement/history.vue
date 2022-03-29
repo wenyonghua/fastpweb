@@ -54,9 +54,9 @@ getList();
   <div class="searchBar">
    <el-form :inline="true" :model="query" class="demo-form-inline">
     <el-form-item :label="$t('search_bar.subtime')">
-        <el-date-picker v-model="query.applyStartTime" value-format="YYYY-MM-DD" type="date" placeholder="Pick a day" />
+        <el-date-picker v-model="query.applyStartTime" value-format="YYYY-MM-DD" type="date" :placeholder="$t('search_bar.placeholder_date')" />
         <span style="padding: 0 10px">{{$t('search_bar.to')}}</span>
-        <el-date-picker v-model="query.applyEndTime" value-format="YYYY-MM-DD" type="date" placeholder="Pick a day" />
+        <el-date-picker v-model="query.applyEndTime" value-format="YYYY-MM-DD" type="date" :placeholder="$t('search_bar.placeholder_date')" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">{{$t('search_bar.search') }}</el-button>
@@ -67,12 +67,12 @@ getList();
       <el-pagination background layout="prev, pager, next" :total="pager.total" />
   </div> -->
   <el-table v-loading="loading" :data="tableData" border style="width: 100%">
-    <el-table-column prop="orderNo" label="order No"/>
-    <el-table-column prop="withdrawAmount" label="Amount" width="120" />
-    <el-table-column prop="applyTime" label="Submit Time" width="180" />
-    <el-table-column prop="openAccountBank" label="Bank Name" width="200" />
-    <el-table-column prop="bankCardAccount" label="Account No" width="180" />
-    <el-table-column prop="stateName" label="Status" width="100" />
+    <el-table-column prop="orderNo" :label="$t('table.order_no')"/>
+    <el-table-column prop="withdrawAmount" :label="$t('table.amount')" width="120" />
+    <el-table-column prop="applyTime" :label="$t('table.submit_time')" width="180" />
+    <el-table-column prop="openAccountBank" :label="$t('bank.bank_name')"  width="200" />
+    <el-table-column prop="bankCardAccount" :label="$t('bank.account_num')"  width="180" />
+    <el-table-column prop="stateName" :label="$t('table.state_name')"  width="100" />
   </el-table>
   <div class="pager-box-cus" >
       <el-pagination 
