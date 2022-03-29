@@ -86,11 +86,11 @@ getList();
       <el-button style="float: right" type="primary" @click="onAdd">{{$t('search_bar.bankAdd')}}</el-button>
   </div>
   <el-table v-loading="loading" :data="tableData" border style="width: 100%">
-    <el-table-column prop="openAccountBank" label="Bank Name"/>
-    <el-table-column prop="accountHolder" label="Account Name" width="180" />
-    <el-table-column prop="bankCardAccount" label="Account Number" width="180" />
-    <el-table-column prop="createTime" label="Last Change Time" width="200" />
-    <el-table-column label="Operate" width="160">
+    <el-table-column prop="openAccountBank" :label="$t('bank.bank_name')"/>
+    <el-table-column prop="accountHolder" :label="$t('bank.account_name')" width="180" />
+    <el-table-column prop="bankCardAccount" :label="$t('bank.account_num')" width="180" />
+    <el-table-column prop="createTime" :label="$t('bank.last_change_time')" width="200" />
+    <el-table-column :label="$t('table.operate')" width="160">
       <template #default="scope">
           <el-button-group>
                 <el-button type="primary" @click="onEdit(scope.row)" :icon="Edit"  />
