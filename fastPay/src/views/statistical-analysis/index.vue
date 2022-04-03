@@ -79,22 +79,22 @@ const status_options = [{
   value: 2
 }, {
   name: '已支付',
-  value: 3
-}, {
-  name: '超时取消',
   value: 4
 }, {
-  name: '人工取消',
+  name: '超时取消',
   value: 5
 }, {
-  name: '未确认超时取消',
+  name: '人工取消',
   value: 6
 }, {
-  name: '申诉中',
+  name: '未确认超时取消',
   value: 7
 }, {
-  name: '取消订单退款',
+  name: '申诉中',
   value: 8
+}, {
+  name: '取消订单退款',
+  value: 9
 }]
 
 const getList = () => {
