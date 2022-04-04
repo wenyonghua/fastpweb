@@ -45,8 +45,8 @@ const query = reactive({
   orderState: '',
   gatheringChannelCode: '',
   receiverUserName: '',
-  submitStartTime: '',
-  submitEndTime: '',
+  submitStartTime: moment().format('YYYY-MM-DD'),
+  submitEndTime: moment().format('YYYY-MM-DD'),
   merchantOrderNo: ''
 })
 
@@ -59,7 +59,7 @@ const type_options = [{
     value: 'wetchat'
   }, {
     name: '支付宝',
-    value: 'wetchat'
+    value: 'alipay'
   }, {
     name: '银行卡',
     value: 'bankcard'
@@ -79,22 +79,22 @@ const status_options = [{
   value: 2
 }, {
   name: '已支付',
-  value: 3
-}, {
-  name: '超时取消',
   value: 4
 }, {
-  name: '人工取消',
+  name: '超时取消',
   value: 5
 }, {
-  name: '未确认超时取消',
+  name: '人工取消',
   value: 6
 }, {
-  name: '申诉中',
+  name: '未确认超时取消',
   value: 7
 }, {
-  name: '取消订单退款',
+  name: '申诉中',
   value: 8
+}, {
+  name: '取消订单退款',
+  value: 9
 }]
 
 const getList = () => {
@@ -116,7 +116,7 @@ const onExport = () => {
   let params = qs.stringify(toRaw(query))
   params += '&pageSize=99999&pageNum=1';
   // 接口更新
-  window.open('http://107.182.185.162:8089/merchantOrder/merchantOrdernewExport?' + params);
+  window.open(window.location.origin + '/merchantOrder/merchantOrdernewExport?' + params);
 }
 
 const onChangeNote = () => {
@@ -218,13 +218,13 @@ const handlePictureCardPreview = () => {
 
 getList();
 
-const timer = setInterval(() => {
-  getList();
-}, 10000);
+// const timer = setInterval(() => {
+//   getList();
+// }, 10000);
 
-onUnmounted(() => {
-  clearInterval(timer);
-});
+// onUnmounted(() => {
+//   clearInterval(timer);
+// });
 
 </script>
 
