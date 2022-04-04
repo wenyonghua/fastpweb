@@ -39,7 +39,7 @@ const onExport = () => {
   let params = qs.stringify(toRaw(query))
   params += '&pageSize=99999&pageNum=1';
   // 接口更新
-  window.open(window.location.origin + '/merchantOrder/newrderPayMerhantlistExport?' + params);
+  window.open('http://107.182.185.162:8089/merchantOrder/newrderPayMerhantlistExport?' + params);
 }
 
 const handleSizeChange = (pageSize: number) => {
