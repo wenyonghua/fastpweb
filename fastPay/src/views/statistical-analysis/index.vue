@@ -289,10 +289,13 @@ getList();
     <el-table-column prop="merchantOrderNo" :label="$t('table.merchant_order_no')" width="120" />
     <el-table-column prop="orderState" :label="$t('table.order_state')" width="100">
       <template #default="scope">
-          <div>{{ formatStatus(scope.row.orderState) }}</div>
+          <div v-if="scope.row.orderState == 2" style="color: #e6a23c">{{ formatStatus(scope.row.orderState) }}</div>
+          <div v-else-if="scope.row.orderState == 4" style="color: #67c23a">{{ formatStatus(scope.row.orderState) }}</div>
+          <div v-else-if="scope.row.orderState == 5 || scope.row.orderState == 6 || scope.row.orderState == 7" style="color: #f56c6c">{{ formatStatus(scope.row.orderState) }}</div>
+          <div v-else>{{ formatStatus(scope.row.orderState) }}</div>
       </template>
     </el-table-column>
-    <el-table-column prop="gatheringChannelName" :label="$t('table.gathering_channel_name')" width="80"/>
+    <el-table-column prop="gatheringChannelName" :label="$t('table.gathering_channel_name')" width="90"/>
     <el-table-column prop="gatheringAmount" :label="$t('table.gathering_amount')" width="140">
       <template #default="scope">
           <div>{{ numberToCurrencyNo(scope.row.gatheringAmount) }}VND</div>
