@@ -5,6 +5,7 @@ import { Avatar as avatar, Lock as lock} from '@element-plus/icons-vue'
 import { login } from '~/api/api';
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '~/store/store';
+import { fa } from "_element-plus@2.1.5@element-plus/lib/locale";
 
 const store = useStore()
 
@@ -31,6 +32,10 @@ const showPwd = () => {
 }
 
 const handleLogin = () => {
+  if (loginInfo.username === 'AG005') {
+    ElMessage.error('此用户已被禁止登录此系统，请使用其它账户尝试!');
+    return false;
+  }
   login(loginInfo).then(res => {
     if (res.data.success) {
       store.action.updateUser(JSON.parse(res.data.msg));
