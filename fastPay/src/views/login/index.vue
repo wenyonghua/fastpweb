@@ -5,7 +5,6 @@ import { Avatar as avatar, Lock as lock} from '@element-plus/icons-vue'
 import { login } from '~/api/api';
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '~/store/store';
-import { fa } from "_element-plus@2.1.5@element-plus/lib/locale";
 
 const store = useStore()
 
