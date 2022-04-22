@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, toRaw } from "vue";
 import { ElMessage } from 'element-plus'
-import { findMerchantBankCardByMerchantId, applySettlement } from '~/api/api';
+import { findMerchantBankCardByMerchantId, applySettlement, getMerchantInfo } from '~/api/api';
 import { useStore } from '~/store/store';
 
 // defineProps<{ msg: string }>();
@@ -24,6 +24,7 @@ interface Settlement {
 const loading = ref(false);
 const dialogVisible = ref(false);
 const submitForm = reactive(<Settlement>{});
+let withdrawableAmount = ref(0);
 
 let BankAccount = reactive({
   data: [<BankAccount>{}]
@@ -32,10 +33,15 @@ let BankAccount = reactive({
 let cacheData = [<BankAccount>{}];
 
 const init = () => {
+  loading.value = true;
   findMerchantBankCardByMerchantId().then(res => {
      BankAccount.data  = res.data.data;
      cacheData = res.data.data;
-  })
+  });
+  getMerchantInfo().then(res => {
+    withdrawableAmount.value = res.data.data.withdrawableAmount;
+    loading.value = false;
+  });
 }
 
 const handleClose = () => {
@@ -77,7 +83,7 @@ init();
       <el-form :inline="false" :model="submitForm" class="demo-form-inline" label-width="150px">
         <div class="el-form-item"  style="color: red;">
           <label for="" class="el-form-item__label" style="width: 150px;color: red;">{{$t('settlement.available_balance')}}</label>
-          <div class="el-form-item__content"><span>{{store.state.info?.withdrawableAmount}}</span>
+          <div class="el-form-item__content"><span>{{withdrawableAmount}}</span>
         </div></div>
         <el-form-item :label="$t('settlement.amount')">
           <el-input-number controls-position="right" v-model="submitForm.withdrawAmount" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
