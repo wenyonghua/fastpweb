@@ -104,3 +104,8 @@ import { axios as request } from '../utils/request';
   export const merchantOrdernewExport = () => {
     return window.open('/merchantOrder/merchantOrdernewExport?orderNo=&merchantOrderNo=&orderState=&receiverUserName=&submitStartTime=2022-03-01&submitEndTime=2022-03-25&pageNum=1&pageSize=99999999');
   }
+
+  // 付款订单列表
+  export const findMerchantPayoutOrderByPage = (params: any) => {
+    return request.get('/merchantPayoutOrder/findMerchantPayoutOrderByPage', {params: params});
+  }

@@ -11,6 +11,8 @@ import bankManagement from '../views/bank/management.vue';
 
 import merchantPaylist from '../views/bank/history.vue';
 
+import payoutmerchantOrder from '../views/payout/order.vue'
+
 const routerHistory = createWebHistory()
 // createWebHashHistory hash 路由
 // createWebHistory history 路由
@@ -48,6 +50,11 @@ const router = createRouter({
     {
       path: '/merchant-paylist',
       component: merchantPaylist
+    },
+    // 付款订单列表
+    {
+      path: '/payoutmerchant-order',
+      component: payoutmerchantOrder
     }
   ]
 })
