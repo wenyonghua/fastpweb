@@ -16,7 +16,8 @@ export default {
         create_settlement: 'Create Information',
         settlement_history: 'Setttlement History',
         merchant_order: 'Merchant Order',
-        bank_management: 'Bank Management'
+        bank_management: 'Bank Management',
+        payoutmerchant_order: '付款订单列表',
     },
     search_bar: {
         order_no: 'Order Number',
@@ -33,7 +34,14 @@ export default {
         submint: 'Submit',
         export: "Export",
         add: 'Add',
-        bankAdd: 'Add Bank'
+        bankAdd: 'Add Bank',
+        // 20220622
+        channelCode: '通道',
+        merchant_name: '商户名称',
+        shoukuan_bank_num: '收款银行卡号',
+        note: '备注',
+        attch: '附加信息',
+        fukuan_bank_num: '付款银行列表'
     },
     table: {
         order_no: 'Order Number',
@@ -64,7 +72,18 @@ export default {
         service_change: 'Fee',
         settlement_time: 'Settle Time',
         amount: 'Amount',
-        state_name: 'Status'
+        state_name: 'Status',
+        // 20220623 新增
+        order_amout: '订单金额',
+        bankcard_total_amount: '银行卡总结余金额',
+        receiving_bank_card: '收款银行卡号',
+        payee: '收款人',
+        receiving_bank_name: '收款银行名称',
+        receiving_bank_branch: '收款支行',
+        payment_bank_card_list: '付款银行卡号列表',
+        payment_bank_card: '付款银行卡号',
+        system_source: '系统来源',
+        complete_time: '完成时间'
     },
     bank: {
         edit_bank_card: 'Edit Bank',
