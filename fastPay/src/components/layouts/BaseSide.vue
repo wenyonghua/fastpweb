@@ -30,6 +30,10 @@
       <el-icon><wallet /></el-icon>
       <template #title>{{$t('side_bar.transaction_history')}}</template>
     </el-menu-item>
+    <el-menu-item index="'/payoutmerchant-order">
+      <el-icon><setting /></el-icon>
+      <template #title>{{$t('side_bar.payoutmerchant_order')}}</template>
+    </el-menu-item>
     <el-menu-item index="'/">
       <el-icon><setting /></el-icon>
       <template #title>{{$t('side_bar.merchant_info')}}</template>
