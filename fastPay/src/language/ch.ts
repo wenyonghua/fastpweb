@@ -83,7 +83,9 @@ export default {
         payment_bank_card_list: '付款银行卡号列表',
         payment_bank_card: '付款银行卡号',
         system_source: '系统来源',
-        complete_time: '完成时间'
+        complete_time: '完成时间',
+        merchant_num: '商户号',
+        platform_name: '商户名称'
     },
     bank: {
         edit_bank_card: '编辑银行卡',
