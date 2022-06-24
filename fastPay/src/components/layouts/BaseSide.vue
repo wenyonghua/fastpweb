@@ -31,7 +31,7 @@
       <template #title>{{$t('side_bar.transaction_history')}}</template>
     </el-menu-item>
     <el-menu-item index="'/payoutmerchant-order">
-      <el-icon><setting /></el-icon>
+      <el-icon><creditCard /></el-icon>
       <template #title>{{$t('side_bar.payoutmerchant_order')}}</template>
     </el-menu-item>
     <el-menu-item index="'/">
@@ -51,7 +51,8 @@ import {
   Postcard,
   Tickets,
   Wallet,
-  Setting
+  Setting,
+  CreditCard
 } from '@element-plus/icons-vue'
 
 const isCollapse = ref(true)
