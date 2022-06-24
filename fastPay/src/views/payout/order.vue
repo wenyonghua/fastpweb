@@ -278,9 +278,10 @@ getList();
     <el-table-column prop="shoukuBankPayee" :label="$t('table.payee')" width="120" />
     <el-table-column prop="shoukuBankName" :label="$t('table.receiving_bank_name')" width="120" />
     <el-table-column prop="shoukuBankBranch" :label="$t('table.receiving_bank_branch')" width="120" />
-    <el-table-column prop="gatheringAmountView" :label="$t('table.order_amout')" width="120" />
+    <el-table-column prop="gatheringAmountView" :label="$t('table.amount')" width="120" />
     <el-table-column prop="fukuBankNumber" :label="$t('table.payment_bank_card')" width="120" />
     <el-table-column prop="systemSource" :label="$t('table.system_source')" width="120" />
+    <el-table-column prop="note" :label="$t('table.remark')" width="120" />
     <el-table-column prop="orderState" :label="$t('table.order_state')" width="100">
       <template #default="scope">
           <div v-if="scope.row.orderState == 2" style="color: #e6a23c">{{ formatStatus(scope.row.orderState) }}</div>
@@ -289,15 +290,10 @@ getList();
           <div v-else>{{ formatStatus(scope.row.orderState) }}</div>
       </template>
     </el-table-column>
-    <el-table-column prop="note" :label="$t('table.remark')" width="120" />
-    <el-table-column prop="rate" :label="$t('table.rate')" width="60">
-      <template #default="scope">
-          <div>{{ scope.row.rate }}%</div>
-      </template>
-    </el-table-column>
-    <el-table-column prop="gatheringChannelName" :label="$t('table.gathering_channel_name')" width="90"/>
+    <el-table-column prop="bounty" :label="$t('table.bounty')" width="90"/>
+    <el-table-column prop="gatheringChannelName" :label="$t('table.channel')" width="90"/>
     <el-table-column prop="submitTime" :label="$t('table.submit_time')" width="200" />
-    <el-table-column prop="completeTime" :label="$t('table.complete_time')" width="200" />
+    <el-table-column prop="confirmTime" :label="$t('table.complete_time')" width="200" />
   </el-table>
   <div class="pager-box-cus" >
       <el-pagination 

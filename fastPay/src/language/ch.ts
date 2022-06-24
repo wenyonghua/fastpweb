@@ -85,7 +85,9 @@ export default {
         system_source: '系统来源',
         complete_time: '完成时间',
         merchant_num: '商户号',
-        platform_name: '商户名称'
+        platform_name: '商户名称',
+        bounty: '手续费',
+        channel: '通道'
     },
     bank: {
         edit_bank_card: '编辑银行卡',
