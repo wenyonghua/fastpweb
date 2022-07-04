@@ -83,7 +83,11 @@ export default {
         payment_bank_card_list: 'Payment Bank List',
         payment_bank_card: 'Payment Bank Acc',
         system_source: 'Merchant',
-        complete_time: 'Finish Time'
+        complete_time: 'Finish Time',
+        merchant_num: 'Merchant Number',
+        platform_name: 'Merchant Name',
+        bounty: 'Handling Fee',
+        channel: 'Aisle'
     },
     bank: {
         edit_bank_card: 'Edit Bank',
