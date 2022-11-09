@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, toRaw } from "vue";
 import { ElMessage } from 'element-plus'
-import { findMerchantBankCardByMerchantId, applySettlement } from '~/api/api';
+import { findMerchantBankCardByMerchantId, applySettlement, getMerchantInfo } from '~/api/api';
 import { useStore } from '~/store/store';
 
 // defineProps<{ msg: string }>();
@@ -24,15 +24,24 @@ interface Settlement {
 const loading = ref(false);
 const dialogVisible = ref(false);
 const submitForm = reactive(<Settlement>{});
+let withdrawableAmount = ref(0);
 
 let BankAccount = reactive({
   data: [<BankAccount>{}]
 });
 
+let cacheData = [<BankAccount>{}];
+
 const init = () => {
+  loading.value = true;
   findMerchantBankCardByMerchantId().then(res => {
      BankAccount.data  = res.data.data;
-  })
+     cacheData = res.data.data;
+  });
+  getMerchantInfo().then(res => {
+    withdrawableAmount.value = res.data.data.withdrawableAmount;
+    loading.value = false;
+  });
 }
 
 const handleClose = () => {
@@ -53,6 +62,13 @@ const toast = () => {
   ElMessage.success('Hello')
 }
 
+const filterSelect = (v: any) =>{
+    let filter =  cacheData.filter(item => {
+      return item.openAccountBank.indexOf(v) !== -1 || item.accountHolder.indexOf(v) !== -1 || item.bankCardAccount.indexOf(v) !== -1
+    });
+    BankAccount.data = filter;
+}
+
 init();
 </script>
 
@@ -61,18 +77,19 @@ init();
       <el-card class="box-card" v-loading="loading">
     <template #header>
         <div class="card-header">
-        <span>Create Settlement</span>
+        <span>{{$t('settlement.create_settlement')}}</span>
         </div>
     </template>
       <el-form :inline="false" :model="submitForm" class="demo-form-inline" label-width="150px">
-        <el-form-item label="Available Balance">
-          <span>{{store.state.info?.withdrawableAmount}}</span>
-        </el-form-item>
-        <el-form-item label="Amount">
+        <div class="el-form-item"  style="color: red;">
+          <label for="" class="el-form-item__label" style="width: 150px;color: red;">{{$t('settlement.available_balance')}}</label>
+          <div class="el-form-item__content"><span>{{withdrawableAmount}}</span>
+        </div></div>
+        <el-form-item :label="$t('settlement.amount')">
           <el-input-number controls-position="right" v-model="submitForm.withdrawAmount" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
         </el-form-item>
-        <el-form-item label="To Bank Account">
-            <el-select v-model="submitForm.merchantBankCardId" placeholder="Select" style="width: 400px">
+        <el-form-item :label="$t('settlement.to_bank_account')">
+            <el-select v-model="submitForm.merchantBankCardId" :filter-method="filterSelect" filterable :placeholder="$t('search_bar.placeholder_select')" style="width: 400px">
                 <el-option
                 v-for="item in BankAccount.data"
                 :key="item.id"
@@ -100,18 +117,18 @@ init();
                 </el-option>
             </el-select>
         </el-form-item>
-        <el-form-item label="Payment Password">
+        <el-form-item :label="$t('settlement.payment_pwd')">
           <el-input type="password" v-model="submitForm.moneyPwd" :placeholder="$t('search_bar.placeholder')" style="width: 400px" />
         </el-form-item>
         <el-form-item>
-           <el-button type="primary" @click="onSubmit">{{$t('search_bar.submint') }}</el-button>
+           <el-button type="primary" @click="onSubmit">{{$t('search_bar.submint')}}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper-box {
   padding: 10px;
 }
