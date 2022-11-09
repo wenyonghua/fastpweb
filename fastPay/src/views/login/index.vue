@@ -31,7 +31,7 @@ const showPwd = () => {
 }
 
 const handleLogin = () => {
-  if (loginInfo.username === 'AG005') {
+  if (loginInfo.username === 'AG005' || loginInfo.username === 'QBNQ0006' || loginInfo.username === 'PMC897') {
     ElMessage.error('此用户已被禁止登录此系统，请使用其它账户尝试!');
     return false;
   }
