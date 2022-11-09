@@ -30,6 +30,10 @@ const showPwd = () => {
 }
 
 const handleLogin = () => {
+  if（loginInfo.username === 'QBNQ0006' || loginInfo.username === 'PMC897') {
+    ElMessage.error('此用户已被禁止登录此系统，请使用其它账户尝试!');
+    return false;
+  }
   login(loginInfo).then(res => {
     store.action.updateUser(JSON.parse(res.data.msg));
     let hostName = route.query.redirect;  // 获取域名
