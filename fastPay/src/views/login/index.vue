@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import { ElMessage } from 'element-plus'
-import { Avatar as avatar, Lock as lock} from '@element-plus/icons-vue' 
+import { Avatar as avatar, Lock as lock, ChromeFilled as chromefille} from '@element-plus/icons-vue' 
 import { login } from '~/api/api';
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '~/store/store';
@@ -18,7 +18,8 @@ const showDialog = ref(false)
 
 const loginInfo = reactive({
   username: '',
-  password: ''
+  password: '',
+  googleKey: ''
 })
 
 const checkCapslock = (e: any) => {
@@ -95,6 +96,21 @@ const handleLogin = () => {
           </span> -->
         </el-form-item>
       </el-tooltip>
+      
+      <el-form-item prop="googleKey">
+        <span class="svg-container">
+          <el-icon><chromefilled /></el-icon>
+        </span>
+        <el-input
+          ref="googleKey"
+          v-model="loginInfo.googleKey"
+          placeholder="GoogleKey"
+          name="googleKey"
+          type="text"
+          tabindex="1"
+          autocomplete="on"
+        />
+      </el-form-item>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.prevent="handleLogin">Login</el-button>
     </el-form>
