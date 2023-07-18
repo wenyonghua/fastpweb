@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     proxy: {        
       '/api':{
-        // target: 'http://107.182.185.162:8089',
+        // target: 'http://newmanager.fastpayhome.com',
         target: 'http://66.112.219.47:8089',
         rewrite: path => path.replace(/^\/api/, ''),
         changeOrigin: true,

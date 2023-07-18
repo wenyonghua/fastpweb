@@ -116,7 +116,7 @@ const onExport = () => {
   let params = qs.stringify(toRaw(query))
   params += '&pageSize=99999&pageNum=1';
   // 接口更新
-  window.open('http://107.182.185.162:8089/merchantOrder/merchantOrdernewExport?' + params);
+  window.open('http://newmanager.fastpayhome.com/merchantOrder/merchantOrdernewExport?' + params);
 }
 
 const onChangeNote = () => {
@@ -377,7 +377,7 @@ getList();
         <div>
         <el-form-item label-width="120px" :label="$t('order.screenshot')">
               <el-upload
-                action="http://107.182.185.162:8089/storage/uploadPic"
+                action="http://newmanager.fastpayhome.com/storage/uploadPic"
                 list-type="picture-card"
                 :on-preview="handlePictureCardPreview"
                 :on-remove="handleRemove"
