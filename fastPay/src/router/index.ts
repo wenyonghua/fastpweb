@@ -48,7 +48,7 @@ const router = createRouter({
       component: bankManagement
     },
     {
-      path: '/merchant-paylist',
+      path: '/paylist',
       component: merchantPaylist
     },
     // 付款订单列表
